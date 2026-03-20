@@ -1,0 +1,14 @@
+{
+  "name": "skillearn",
+  "version": "1.0.0",
+  "description": "SkillEarn MERN Stack - run both server and client together",
+  "scripts": {
+    "install-all": "npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm start --prefix client\"",
+    "start": "npm start --prefix server",
+    "seed": "node server/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
