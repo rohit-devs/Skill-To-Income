@@ -1,4 +1,4 @@
-# SkillEarn — MERN Stack Micro-Internship Platform
+﻿# Skill-To-Income â€” MERN Stack Micro-Internship Platform
 
 A full-stack MERN application connecting college students in Tier-2/3 Indian cities with small businesses and companies for affordable micro-tasks.
 
@@ -19,47 +19,47 @@ A full-stack MERN application connecting college students in Tier-2/3 Indian cit
 ## Project Structure
 
 ```
-skillearn/
-├── server/                  ← Express + MongoDB backend
-│   ├── server.js            ← Entry point
-│   ├── models/
-│   │   ├── User.js          ← User schema (student/business/company)
-│   │   └── Task.js          ← Task schema with commission logic
-│   ├── routes/
-│   │   ├── auth.js          ← /api/auth  (register, login, me)
-│   │   ├── tasks.js         ← /api/tasks (CRUD + workflow)
-│   │   └── users.js         ← /api/users (profile, earnings, leaderboard)
-│   ├── middleware/
-│   │   └── auth.js          ← JWT protect + role guard
-│   ├── .env.example         ← Copy to .env and fill in values
-│   └── package.json
-│
-└── client/                  ← React frontend
-    ├── public/
-    │   └── index.html
-    └── src/
-        ├── App.js           ← Router + layout
-        ├── index.js         ← Root render
-        ├── index.css        ← Global design system
-        ├── context/
-        │   └── AuthContext.js
-        ├── utils/
-        │   └── api.js       ← Axios instance
-        ├── components/
-        │   ├── Navbar.js
-        │   ├── TaskCard.js
-        │   └── ProtectedRoute.js
-        └── pages/
-            ├── HomePage.js
-            ├── LoginPage.js
-            ├── RegisterPage.js
-            ├── TasksPage.js
-            ├── TaskDetailPage.js
-            ├── PostTaskPage.js
-            ├── MyTasksPage.js
-            ├── EarningsPage.js
-            ├── LeaderboardPage.js
-            └── ProfilePage.js
+Skill-To-Income/
+â”œâ”€â”€ server/                  â† Express + MongoDB backend
+â”‚   â”œâ”€â”€ server.js            â† Entry point
+â”‚   â”œâ”€â”€ models/
+â”‚   â”‚   â”œâ”€â”€ User.js          â† User schema (student/business/company)
+â”‚   â”‚   â””â”€â”€ Task.js          â† Task schema with commission logic
+â”‚   â”œâ”€â”€ routes/
+â”‚   â”‚   â”œâ”€â”€ auth.js          â† /api/auth  (register, login, me)
+â”‚   â”‚   â”œâ”€â”€ tasks.js         â† /api/tasks (CRUD + workflow)
+â”‚   â”‚   â””â”€â”€ users.js         â† /api/users (profile, earnings, leaderboard)
+â”‚   â”œâ”€â”€ middleware/
+â”‚   â”‚   â””â”€â”€ auth.js          â† JWT protect + role guard
+â”‚   â”œâ”€â”€ .env.example         â† Copy to .env and fill in values
+â”‚   â””â”€â”€ package.json
+â”‚
+â””â”€â”€ client/                  â† React frontend
+    â”œâ”€â”€ public/
+    â”‚   â””â”€â”€ index.html
+    â””â”€â”€ src/
+        â”œâ”€â”€ App.js           â† Router + layout
+        â”œâ”€â”€ index.js         â† Root render
+        â”œâ”€â”€ index.css        â† Global design system
+        â”œâ”€â”€ context/
+        â”‚   â””â”€â”€ AuthContext.js
+        â”œâ”€â”€ utils/
+        â”‚   â””â”€â”€ api.js       â† Axios instance
+        â”œâ”€â”€ components/
+        â”‚   â”œâ”€â”€ Navbar.js
+        â”‚   â”œâ”€â”€ TaskCard.js
+        â”‚   â””â”€â”€ ProtectedRoute.js
+        â””â”€â”€ pages/
+            â”œâ”€â”€ HomePage.js
+            â”œâ”€â”€ LoginPage.js
+            â”œâ”€â”€ RegisterPage.js
+            â”œâ”€â”€ TasksPage.js
+            â”œâ”€â”€ TaskDetailPage.js
+            â”œâ”€â”€ PostTaskPage.js
+            â”œâ”€â”€ MyTasksPage.js
+            â”œâ”€â”€ EarningsPage.js
+            â”œâ”€â”€ LeaderboardPage.js
+            â””â”€â”€ ProfilePage.js
 ```
 
 ---
@@ -76,7 +76,7 @@ skillearn/
 ### 1. Clone / extract the project
 
 ```bash
-cd skillearn
+cd Skill-To-Income
 ```
 
 ---
@@ -98,7 +98,7 @@ Edit `.env`:
 
 ```
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/skillearn
+MONGO_URI=mongodb://localhost:27017/Skill-To-Income
 JWT_SECRET=change_this_to_a_long_random_string
 CLIENT_URL=http://localhost:3000
 ```
@@ -155,8 +155,8 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
       role: 'business', businessName: \"Ravi's Bakery\", city: 'Nashik' }
   ]);
   console.log('Demo accounts created:');
-  console.log('  Student  → student@demo.com / demo123');
-  console.log('  Business → business@demo.com / demo123');
+  console.log('  Student  â†’ student@demo.com / demo123');
+  console.log('  Business â†’ business@demo.com / demo123');
   process.exit(0);
 });
 "
@@ -201,16 +201,16 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
 ## Task Workflow
 
 ```
-open → assigned → submitted → under_review → completed
-              ↑                     ↓
-         revision_requested ←───────┘  (senior requests revision)
+open â†’ assigned â†’ submitted â†’ under_review â†’ completed
+              â†‘                     â†“
+         revision_requested â†â”€â”€â”€â”€â”€â”€â”€â”˜  (senior requests revision)
 ```
 
-1. **Business posts** task → status: `open`
-2. **Student accepts** → status: `assigned`
-3. **Student submits** work → status: `submitted`
-4. **Senior reviews** → approves → status: `under_review`  OR  requests revision → status: `revision_requested`
-5. **Business approves** → status: `completed` → student paid via UPI
+1. **Business posts** task â†’ status: `open`
+2. **Student accepts** â†’ status: `assigned`
+3. **Student submits** work â†’ status: `submitted`
+4. **Senior reviews** â†’ approves â†’ status: `under_review`  OR  requests revision â†’ status: `revision_requested`
+5. **Business approves** â†’ status: `completed` â†’ student paid via UPI
 
 ---
 
@@ -221,7 +221,7 @@ open → assigned → submitted → under_review → completed
 | student   | Browse & accept tasks, submit work, earn         |
 | business  | Post tasks, review submissions, approve & pay    |
 | company   | Same as business + access senior review panel    |
-| isSenior  | Flag on student — unlocked after 10 tasks + 4.5★ |
+| isSenior  | Flag on student â€” unlocked after 10 tasks + 4.5â˜… |
 
 ---
 
@@ -230,8 +230,8 @@ open → assigned → submitted → under_review → completed
 | Variable    | Description                         | Default                          |
 |-------------|-------------------------------------|----------------------------------|
 | PORT        | Server port                         | 5000                             |
-| MONGO_URI   | MongoDB connection string           | mongodb://localhost:27017/skillearn |
-| JWT_SECRET  | JWT signing secret (keep private!)  | —                                |
+| MONGO_URI   | MongoDB connection string           | mongodb://localhost:27017/Skill-To-Income |
+| JWT_SECRET  | JWT signing secret (keep private!)  | â€”                                |
 | CLIENT_URL  | Frontend URL for CORS               | http://localhost:3000            |
 
 ---
@@ -254,4 +254,4 @@ open → assigned → submitted → under_review → completed
 ---
 
 ## License
-MIT — free to use and modify.
+MIT â€” free to use and modify.
