@@ -1,65 +1,111 @@
-﻿# Skill-To-Income â€” MERN Stack Micro-Internship Platform
+﻿# Skill-To-Income — Micro-Internship Platform
 
-A full-stack MERN application connecting college students in Tier-2/3 Indian cities with small businesses and companies for affordable micro-tasks.
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1B4FD8,100:F5630A&height=220&section=header&text=Skill-To-Income&fontSize=70&fontColor=ffffff&fontAlignY=38&desc=Micro-Internship%20Platform%20%F0%9F%87%AE%F0%9F%87%B3&descAlignY=60&descSize=20&animation=fadeIn" width="100%"/>
+
+<br/>
+
+<img src="https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react&logoColor=black"/>
+<img src="https://img.shields.io/badge/Node.js-20-339933?style=flat-square&logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/MongoDB-8.0-47A248?style=flat-square&logo=mongodb&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express-4.18-000000?style=flat-square&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/Socket.io-4.6-010101?style=flat-square&logo=socket.io&logoColor=white"/>
+
+<br/><br/>
+
+<img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square"/>
+<img src="https://img.shields.io/badge/Version-2.0.0-1B4FD8?style=flat-square"/>
+<img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square"/>
+<img src="https://img.shields.io/badge/Made%20in-India%20🇮🇳-FF9933?style=flat-square"/>
+
+<br/><br/>
+
+<h3>Turn your skills into income.</h3>
+
+<p>
+India first peer-reviewed micro-internship platform.<br/>
+College students earn Rs 150 to Rs 500 per task. Businesses get quality work in 24 to 72 hours.
+</p>
+
+</div>
 
 ---
 
-## Tech Stack
+## What is Skill-To-Income?
 
-| Layer      | Technology                          |
-|------------|-------------------------------------|
-| Frontend   | React 18, React Router v6, Axios    |
-| Backend    | Node.js, Express 4                  |
-| Database   | MongoDB + Mongoose                  |
-| Auth       | JWT (jsonwebtoken) + bcryptjs       |
-| Validation | express-validator                   |
+Skill-To-Income is a full-stack MERN marketplace that solves two problems at once:
+
+- Students in Tier-2 and Tier-3 cities have digital skills but no income source during college
+- Small businesses need affordable design, writing, and data tasks but cannot afford agencies
+
+Skill-To-Income bridges the gap with micro-tasks (Rs 150 to Rs 500, completed in 6 to 72 hours), a built-in peer review quality system, and UPI payouts within 24 hours.
+
+---
+
+## Features
+
+| Student Side | Business Side |
+|---|---|
+| Browse tasks by skill category | Post tasks in 2 minutes |
+| Accept and complete in 6 to 72 hours | AI-powered student matching |
+| Submit files via Cloudinary | Real-time chat per task |
+| Get paid via UPI (Razorpay) | Escrow payments on approval |
+| Senior-Junior peer review | Business analytics and ROI |
+| Skill assessment and verified badges | Dispute resolution |
+| Earnings dashboard with charts | Priority task listings |
+| Public portfolio page | Monthly subscription plans |
+
+### Platform Infrastructure
+
+| Feature | Technology | Status |
+|---------|-----------|:------:|
+| Authentication | JWT + Passport.js | Done |
+| Social Login | Google OAuth 2.0 | Done |
+| Real-time Chat | Socket.io | Done |
+| File Uploads | Cloudinary + Multer | Done |
+| Payments | Razorpay Escrow + UPI Payout | Done |
+| Email Alerts | Nodemailer + Gmail | Done |
+| AI Matching | Custom scoring engine | Done |
+| Skill Tests | Timed MCQ assessments | Done |
+| Dispute System | Admin arbitration | Done |
+| Admin Panel | Full analytics + moderation | Done |
 
 ---
 
 ## Project Structure
-
 ```
-Skill-To-Income/
-â”œâ”€â”€ server/                  â† Express + MongoDB backend
-â”‚   â”œâ”€â”€ server.js            â† Entry point
-â”‚   â”œâ”€â”€ models/
-â”‚   â”‚   â”œâ”€â”€ User.js          â† User schema (student/business/company)
-â”‚   â”‚   â””â”€â”€ Task.js          â† Task schema with commission logic
-â”‚   â”œâ”€â”€ routes/
-â”‚   â”‚   â”œâ”€â”€ auth.js          â† /api/auth  (register, login, me)
-â”‚   â”‚   â”œâ”€â”€ tasks.js         â† /api/tasks (CRUD + workflow)
-â”‚   â”‚   â””â”€â”€ users.js         â† /api/users (profile, earnings, leaderboard)
-â”‚   â”œâ”€â”€ middleware/
-â”‚   â”‚   â””â”€â”€ auth.js          â† JWT protect + role guard
-â”‚   â”œâ”€â”€ .env.example         â† Copy to .env and fill in values
-â”‚   â””â”€â”€ package.json
-â”‚
-â””â”€â”€ client/                  â† React frontend
-    â”œâ”€â”€ public/
-    â”‚   â””â”€â”€ index.html
-    â””â”€â”€ src/
-        â”œâ”€â”€ App.js           â† Router + layout
-        â”œâ”€â”€ index.js         â† Root render
-        â”œâ”€â”€ index.css        â† Global design system
-        â”œâ”€â”€ context/
-        â”‚   â””â”€â”€ AuthContext.js
-        â”œâ”€â”€ utils/
-        â”‚   â””â”€â”€ api.js       â† Axios instance
-        â”œâ”€â”€ components/
-        â”‚   â”œâ”€â”€ Navbar.js
-        â”‚   â”œâ”€â”€ TaskCard.js
-        â”‚   â””â”€â”€ ProtectedRoute.js
-        â””â”€â”€ pages/
-            â”œâ”€â”€ HomePage.js
-            â”œâ”€â”€ LoginPage.js
-            â”œâ”€â”€ RegisterPage.js
-            â”œâ”€â”€ TasksPage.js
-            â”œâ”€â”€ TaskDetailPage.js
-            â”œâ”€â”€ PostTaskPage.js
-            â”œâ”€â”€ MyTasksPage.js
-            â”œâ”€â”€ EarningsPage.js
-            â”œâ”€â”€ LeaderboardPage.js
-            â””â”€â”€ ProfilePage.js
+skill-to-income/
+├── server/
+│   ├── config/passport.js
+│   ├── middleware/auth.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Task.js
+│   │   ├── Message.js
+│   │   ├── Payment.js
+│   │   ├── Dispute.js
+│   │   └── Assessment.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── tasks.js
+│   │   ├── users.js
+│   │   ├── payments.js
+│   │   ├── chat.js
+│   │   ├── disputes.js
+│   │   ├── assessments.js
+│   │   └── admin.js
+│   ├── services/
+│   │   ├── razorpay.js
+│   │   ├── cloudinary.js
+│   │   ├── email.js
+│   │   └── aiMatching.js
+│   ├── socket/index.js
+│   └── server.js
+└── client/src/
+    ├── context/
+    ├── components/
+    └── pages/
 ```
 
 ---
@@ -67,191 +113,187 @@ Skill-To-Income/
 ## Quick Start
 
 ### Prerequisites
-- Node.js v16+
-- MongoDB running locally OR a MongoDB Atlas URI
+- Node.js v18+
+- MongoDB v7+
 - npm v8+
 
----
-
-### 1. Clone / extract the project
-
+### 1 — Clone the repo
 ```bash
-cd Skill-To-Income
+git clone https://github.com/rohit-devs/skillearn.git
+cd skillearn
 ```
 
----
-
-### 2. Set up the backend
-
+### 2 — Set up the backend
 ```bash
 cd server
 npm install
-```
-
-Create your `.env` file:
-
-```bash
 cp .env.example .env
 ```
 
-Edit `.env`:
-
+Edit server/.env:
 ```
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/Skill-To-Income
-JWT_SECRET=change_this_to_a_long_random_string
+MONGO_URI=mongodb://localhost:27017/skillearn
+JWT_SECRET=your_secret_key_here
 CLIENT_URL=http://localhost:3000
 ```
-
-Start the backend:
-
 ```bash
-npm run dev        # development with nodemon
-# OR
-npm start          # production
+npm run dev
 ```
 
-You should see:
-```
-MongoDB connected
-Server running on port 5000
-```
-
----
-
-### 3. Set up the frontend
-
-Open a new terminal:
-
+### 3 — Set up the frontend
 ```bash
-cd client
+cd ../client
 npm install
 npm start
 ```
 
-React will open at **http://localhost:3000**
-
----
-
-### 4. Seed demo data (optional)
-
-Run this in your terminal to create demo accounts:
-
+### 4 — Seed demo data
 ```bash
-cd server
-node -e "
-const mongoose = require('mongoose');
-const User = require('./models/User');
-require('dotenv').config();
-
-mongoose.connect(process.env.MONGO_URI).then(async () => {
-  await User.deleteMany({ email: { \$in: ['student@demo.com','business@demo.com'] }});
-  await User.create([
-    { name: 'Priya Sharma', email: 'student@demo.com', password: 'demo123',
-      role: 'student', college: 'FAMT Ratnagiri', city: 'Ratnagiri',
-      skills: ['Design','Writing','Canva'], whatsapp: '+91 9876543210',
-      tasksCompleted: 4, totalEarned: 840 },
-    { name: 'Ravi Kulkarni', email: 'business@demo.com', password: 'demo123',
-      role: 'business', businessName: \"Ravi's Bakery\", city: 'Nashik' }
-  ]);
-  console.log('Demo accounts created:');
-  console.log('  Student  â†’ student@demo.com / demo123');
-  console.log('  Business â†’ business@demo.com / demo123');
-  process.exit(0);
-});
-"
+node server/seed.js
 ```
+
+### 5 — Demo accounts
+
+| Role | Email | Password |
+|------|-------|----------|
+| Student | student@demo.com | demo123 |
+| Senior | senior@demo.com | demo123 |
+| Business | business@demo.com | demo123 |
+| Company | company@demo.com | demo123 |
+| Admin | admin@demo.com | demo123 |
 
 ---
 
 ## API Reference
 
-### Auth
-| Method | Route               | Description        | Auth |
-|--------|---------------------|--------------------|------|
-| POST   | /api/auth/register  | Register new user  | No   |
-| POST   | /api/auth/login     | Login              | No   |
-| GET    | /api/auth/me        | Get current user   | Yes  |
+### Auth — /api/auth
 
-### Tasks
-| Method | Route                      | Description                    | Auth         |
-|--------|----------------------------|--------------------------------|--------------|
-| GET    | /api/tasks                 | List open tasks (+ filters)    | No           |
-| GET    | /api/tasks/my              | My tasks (posted or assigned)  | Yes          |
-| GET    | /api/tasks/review          | Tasks awaiting senior review   | Senior only  |
-| GET    | /api/tasks/:id             | Task detail                    | No           |
-| POST   | /api/tasks                 | Post new task                  | Business/Co  |
-| PATCH  | /api/tasks/:id/accept      | Student accepts task           | Student      |
-| PATCH  | /api/tasks/:id/submit      | Student submits work           | Student      |
-| PATCH  | /api/tasks/:id/review      | Senior approves/revises        | Senior       |
-| PATCH  | /api/tasks/:id/approve     | Client final approval          | Business/Co  |
-| DELETE | /api/tasks/:id             | Delete open task               | Business/Co  |
+| Method | Route | Description | Auth |
+|--------|-------|-------------|:----:|
+| POST | /register | Register new user | No |
+| POST | /login | Login | No |
+| GET | /me | Current user | Yes |
 
-### Users
-| Method | Route                | Description          | Auth |
-|--------|----------------------|----------------------|------|
-| GET    | /api/users/profile   | Own profile          | Yes  |
-| PUT    | /api/users/profile   | Update profile       | Yes  |
-| GET    | /api/users/earnings  | Earnings + weekly    | Yes  |
-| GET    | /api/users/leaderboard | Top 10 students    | No   |
-| GET    | /api/users/:id       | Public user profile  | No   |
+### Tasks — /api/tasks
+
+| Method | Route | Description | Role |
+|--------|-------|-------------|------|
+| GET | / | List open tasks (public) | Public |
+| POST | / | Post new task | Business |
+| GET | /:id | Task detail | Public |
+| PATCH | /:id/accept | Accept task | Student |
+| PATCH | /:id/submit | Submit work | Student |
+| PATCH | /:id/review | Senior review | Senior |
+| PATCH | /:id/approve | Final approval | Business |
+| DELETE | /:id | Delete task | Business |
+
+### Payments — /api/payments
+
+| Method | Route | Description | Role |
+|--------|-------|-------------|------|
+| POST | /create-order | Razorpay order | Business |
+| POST | /verify | Verify signature | Business |
+| POST | /release/:taskId | Release to student | Business |
 
 ---
 
-## Task Workflow
-
+## Task Lifecycle
 ```
-open â†’ assigned â†’ submitted â†’ under_review â†’ completed
-              â†‘                     â†“
-         revision_requested â†â”€â”€â”€â”€â”€â”€â”€â”˜  (senior requests revision)
+Business posts task
+       |
+       v
+    [ open ]
+       |  Student accepts
+       v
+  [ assigned ] — Student works on task
+       |  Student submits work + link
+       v
+  [ submitted ]
+       |  Senior student reviews quality
+    pass   fail
+       |     |
+       v     v
+[ under_review ]  [ revision_requested ]
+       |
+       |  Business approves
+       v
+  [ completed ]
+       |
+       UPI payout released to student
 ```
 
-1. **Business posts** task â†’ status: `open`
-2. **Student accepts** â†’ status: `assigned`
-3. **Student submits** work â†’ status: `submitted`
-4. **Senior reviews** â†’ approves â†’ status: `under_review`  OR  requests revision â†’ status: `revision_requested`
-5. **Business approves** â†’ status: `completed` â†’ student paid via UPI
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| Frontend | React 18 + React Router v6 | UI and routing |
+| Styling | Custom CSS — Plus Jakarta Sans | Design system |
+| Charts | Recharts | Earnings and analytics |
+| Real-time | Socket.io | Chat and notifications |
+| Backend | Node.js + Express 4 | REST API |
+| Database | MongoDB + Mongoose | Data persistence |
+| Auth | JWT + bcryptjs | Secure authentication |
+| OAuth | Passport.js + Google | Social login |
+| Payments | Razorpay | Escrow and UPI payouts |
+| Files | Cloudinary + Multer | Uploads up to 10MB |
+| Email | Nodemailer | Transactional alerts |
+| AI | Custom scoring engine | Task-student matching |
 
 ---
 
-## User Roles
+## Roadmap
 
-| Role      | Can do                                           |
-|-----------|--------------------------------------------------|
-| student   | Browse & accept tasks, submit work, earn         |
-| business  | Post tasks, review submissions, approve & pay    |
-| company   | Same as business + access senior review panel    |
-| isSenior  | Flag on student â€” unlocked after 10 tasks + 4.5â˜… |
+- [x] MERN stack MVP
+- [x] JWT auth + Google OAuth
+- [x] Real-time chat with Socket.io
+- [x] Razorpay escrow + UPI payouts
+- [x] Cloudinary file uploads
+- [x] Skill assessment tests
+- [x] Admin dashboard
+- [x] Dispute resolution
+- [x] AI task matching
+- [x] Business analytics
+- [x] Public portfolio pages
+- [x] Rebrand to Skill-To-Income
+- [ ] React Native mobile app
+- [ ] WhatsApp bot integration
+- [ ] Hindi and Marathi language support
+- [ ] Blockchain skill certificates
 
 ---
 
-## Environment Variables
+## Contributing
+```bash
+git checkout -b feature/your-feature
+git commit -m "feat: add your feature"
+git push origin feature/your-feature
+```
 
-| Variable    | Description                         | Default                          |
-|-------------|-------------------------------------|----------------------------------|
-| PORT        | Server port                         | 5000                             |
-| MONGO_URI   | MongoDB connection string           | mongodb://localhost:27017/Skill-To-Income |
-| JWT_SECRET  | JWT signing secret (keep private!)  | â€”                                |
-| CLIENT_URL  | Frontend URL for CORS               | http://localhost:3000            |
-
----
-
-## Pages
-
-| Route         | Page               | Access       |
-|---------------|--------------------|--------------|
-| /             | Landing page       | Public       |
-| /tasks        | Task feed          | Public       |
-| /tasks/:id    | Task detail        | Public       |
-| /leaderboard  | Top earners        | Public       |
-| /login        | Login              | Public       |
-| /register     | Register           | Public       |
-| /post-task    | Post a task        | Business/Co  |
-| /my-tasks     | My tasks           | Logged in    |
-| /earnings     | Earnings dashboard | Student      |
-| /profile      | Edit profile       | Logged in    |
+See CONTRIBUTING.md for full guidelines.
 
 ---
 
 ## License
-MIT â€” free to use and modify.
+
+MIT — see LICENSE for details.
+
+---
+
+<div align="center">
+
+**Built by Rohit — SE IT, FAMT Ratnagiri**
+
+Bridging the gap between student skills and business needs across India
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rohit-devs)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/rohit-devs)
+
+Star this repo if it helped you!
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1B4FD8,100:F5630A&height=100&section=footer" width="100%"/>
+
+</div>
+
