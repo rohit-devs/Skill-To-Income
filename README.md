@@ -86,6 +86,11 @@ cd skillearn
 ```bash
 cd server
 npm install
+```
+
+Create your `.env` file:
+
+```bash
 cp .env.example .env
 ```
 
@@ -94,7 +99,7 @@ Edit `.env`:
 ```
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/skillearn
-JWT_SECRET=your_secret_key_here
+JWT_SECRET=change_this_to_a_long_random_string
 CLIENT_URL=http://localhost:3000
 ```
 
@@ -119,7 +124,7 @@ Server running on port 5000
 Open a new terminal:
 
 ```bash
-cd ../client
+cd client
 npm install
 npm start
 ```

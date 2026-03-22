@@ -4,22 +4,23 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 
-import HomePage        from './pages/HomePage';
-import LoginPage       from './pages/LoginPage';
-import RegisterPage    from './pages/RegisterPage';
-import TasksPage       from './pages/TasksPage';
-import TaskDetailPage  from './pages/TaskDetailPage';
-import PostTaskPage    from './pages/PostTaskPage';
-import MyTasksPage     from './pages/MyTasksPage';
-import EarningsPage    from './pages/EarningsPage';
-import LeaderboardPage from './pages/LeaderboardPage';
-import ProfilePage     from './pages/ProfilePage';
-import AdminDashboard  from './pages/AdminDashboard';
+import HomePage            from './pages/HomePage';
+import LoginPage           from './pages/LoginPage';
+import RegisterPage        from './pages/RegisterPage';
+import TasksPage           from './pages/TasksPage';
+import TaskDetailPage      from './pages/TaskDetailPage';
+import PostTaskPage        from './pages/PostTaskPage';
+import MyTasksPage         from './pages/MyTasksPage';
+import EarningsPage        from './pages/EarningsPage';
+import LeaderboardPage     from './pages/LeaderboardPage';
+import ProfilePage         from './pages/ProfilePage';
+import AdminDashboard      from './pages/AdminDashboard';
 import AssessmentsListPage from './pages/AssessmentsListPage';
-import AssessmentPage  from './pages/AssessmentPage';
-import AnalyticsPage   from './pages/AnalyticsPage';
-import PortfolioPage   from './pages/PortfolioPage';
-import OAuthSuccess    from './pages/OAuthSuccess';
+import AssessmentPage      from './pages/AssessmentPage';
+import AnalyticsPage       from './pages/AnalyticsPage';
+import PortfolioPage       from './pages/PortfolioPage';
+import OAuthSuccess        from './pages/OAuthSuccess';
+import ReviewQueuePage     from './pages/ReviewQueuePage';
 import { DisputeListPage, DisputeDetailPage } from './pages/DisputePages';
 
 import './index.css';
@@ -40,20 +41,21 @@ export default function App() {
           <Route path="/portfolio/:id" element={<PortfolioPage />} />
           <Route path="/oauth-success" element={<OAuthSuccess />} />
 
-          {/* Student only */}
+          {/* Student */}
           <Route path="/my-tasks"   element={<ProtectedRoute><MyTasksPage /></ProtectedRoute>} />
           <Route path="/earnings"   element={<ProtectedRoute roles={['student']}><EarningsPage /></ProtectedRoute>} />
           <Route path="/assessments" element={<ProtectedRoute roles={['student']}><AssessmentsListPage /></ProtectedRoute>} />
           <Route path="/assessments/:skill" element={<ProtectedRoute roles={['student']}><AssessmentPage /></ProtectedRoute>} />
+          <Route path="/review"     element={<ProtectedRoute roles={['student','admin']}><ReviewQueuePage /></ProtectedRoute>} />
 
-          {/* Business/Company */}
-          <Route path="/post-task" element={<ProtectedRoute roles={['business','company']}><PostTaskPage /></ProtectedRoute>} />
-          <Route path="/analytics" element={<ProtectedRoute roles={['business','company']}><AnalyticsPage /></ProtectedRoute>} />
+          {/* Business */}
+          <Route path="/post-task"  element={<ProtectedRoute roles={['business','company']}><PostTaskPage /></ProtectedRoute>} />
+          <Route path="/analytics"  element={<ProtectedRoute roles={['business','company']}><AnalyticsPage /></ProtectedRoute>} />
 
-          {/* All logged-in */}
-          <Route path="/profile"       element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-          <Route path="/disputes"      element={<ProtectedRoute><DisputeListPage /></ProtectedRoute>} />
-          <Route path="/disputes/:id"  element={<ProtectedRoute><DisputeDetailPage /></ProtectedRoute>} />
+          {/* All logged in */}
+          <Route path="/profile"      element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="/disputes"     element={<ProtectedRoute><DisputeListPage /></ProtectedRoute>} />
+          <Route path="/disputes/:id" element={<ProtectedRoute><DisputeDetailPage /></ProtectedRoute>} />
 
           {/* Admin */}
           <Route path="/admin" element={<ProtectedRoute roles={['admin']}><AdminDashboard /></ProtectedRoute>} />

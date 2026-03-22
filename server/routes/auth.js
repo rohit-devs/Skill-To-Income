@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const router  = express.Router();
+const jwt     = require('jsonwebtoken');
+const bcrypt  = require('bcryptjs');
+const User    = require('../models/User');
 const { protect } = require('../middleware/auth');
 
 const generateToken = (id) =>
@@ -10,18 +11,23 @@ const generateToken = (id) =>
 // POST /api/auth/register
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password, role, college, city, skills, whatsapp,
-            yearOfStudy, businessName } = req.body;
+    const { name, email, password, role, college, city, skills,
+            whatsapp, businessName } = req.body;
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ message: 'Email already registered' });
     const user = await User.create({
-      name, email, password, role: role || 'student',
-      college, city, skills: skills || [], whatsapp, yearOfStudy, businessName
+      name, email, password,
+      role: role || 'student',
+      college, city,
+      skills: skills || [],
+      whatsapp,
+      businessName,
     });
     res.status(201).json({
       _id: user._id, name: user.name, email: user.email,
-      role: user.role, level: user.level,
-      token: generateToken(user._id)
+      role: user.role, isSenior: user.isSenior,
+      tasksCompleted: user.tasksCompleted, totalEarned: user.totalEarned,
+      token: generateToken(user._id),
     });
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -33,15 +39,21 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user || !(await user.comparePassword(password))) {
-      return res.status(401).json({ message: 'Invalid email or password' });
-    }
+    if (!user) return res.status(401).json({ message: 'Invalid email or password' });
+    // Support both matchPassword and comparePassword method names
+    const isMatch = user.matchPassword
+      ? await user.matchPassword(password)
+      : await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
+    if (user.isBanned) return res.status(403).json({ message: 'Account suspended. Contact support.' });
     res.json({
       _id: user._id, name: user.name, email: user.email,
-      role: user.role, level: user.level, city: user.city,
-      skills: user.skills, college: user.college,
+      role: user.role, isSenior: user.isSenior,
+      city: user.city, skills: user.skills,
+      college: user.college, businessName: user.businessName,
       tasksCompleted: user.tasksCompleted, totalEarned: user.totalEarned,
-      token: generateToken(user._id)
+      verifiedSkills: user.verifiedSkills || [],
+      token: generateToken(user._id),
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -54,17 +66,3 @@ router.get('/me', protect, async (req, res) => {
 });
 
 module.exports = router;
-
-const passport = require('passport');
-
-// Google OAuth routes
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'], session: false }));
-
-router.get('/google/callback',
-  passport.authenticate('google', { session: false, failureRedirect: '/login' }),
-  (req, res) => {
-    const { token, user } = req.user;
-    const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
-    res.redirect(`${CLIENT_URL}/oauth-success?token=${token}&role=${user.role}&name=${encodeURIComponent(user.name)}`);
-  }
-);
