@@ -1,0 +1,40 @@
+{
+  "name": "skillearn-client",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.8.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.3",
+    "socket.io-client": "^4.8.1"
+  },
+  "scripts": {
+    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./src/generated-tailwind.css --watch",
+    "build:tailwind": "tailwindcss -i ./src/tailwind.css -o ./src/generated-tailwind.css",
+    "start": "npm run build:tailwind && craco start",
+    "build": "npm run build:tailwind && craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.17"
+  }
+}
