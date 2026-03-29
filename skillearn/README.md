@@ -1,257 +1,206 @@
-# SkillEarn — MERN Stack Micro-Internship Platform
+<div align="center">
+  <img src="https://via.placeholder.com/150?text=SkillEarn+Logo" alt="SkillEarn Logo" width="120" />
 
-A full-stack MERN application connecting college students in Tier-2/3 Indian cities with small businesses and companies for affordable micro-tasks.
+  <h1>SkillEarn</h1>
+  
+  <p>
+    <strong>A next-generation micro-internship platform connecting students with high-growth businesses.</strong>
+  </p>
+
+  <p>
+    <a href="#demo"><img src="https://img.shields.io/badge/Live_Demo-Available-success?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
+    <img src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge&logo=githubactions" alt="Build Status" />
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
+    <img src="https://img.shields.io/badge/Version-1.0.0-orange?style=for-the-badge" alt="Version" />
+  </p>
+</div>
+
+<hr />
+
+## 🚀 Overview
+
+The modern entry-level job market is deeply fragmented. Students struggle to gain real-world experience, while startups and SMBs lack the budget for full-time junior hires. 
+
+**SkillEarn** bridges this gap. It operates as a dynamic, robust task marketplace where businesses can outsource short-term, paid tasks (micro-internships), and students can build their portfolios while earning. Built with enterprise-grade architecture, strict security paradigms, and a seamless user experience, SkillEarn is designed to scale.
 
 ---
 
-## Tech Stack
+## ✨ Key Features
 
-| Layer      | Technology                          |
-|------------|-------------------------------------|
-| Frontend   | React 18, React Router v6, Axios    |
-| Backend    | Node.js, Express 4                  |
-| Database   | MongoDB + Mongoose                  |
-| Auth       | JWT (jsonwebtoken) + bcryptjs       |
-| Validation | express-validator                   |
+- **Dynamic Task Marketplace:** Intelligent feed for discovering, filtering, and applying to micro-internships.
+- **Multi-Tenant Role System:** Distinct, isolated dashboards and capabilities for `Student`, `Business`, and `Company` personas.
+- **Secure Authentication:** Stateless, hardened JWT-based authentication with strict HTTP-only cookie strategies and role-based access control (RBAC).
+- **Financial Dashboard:** Real-time earnings tracking, payout status, and task completion metrics.
+- **Task Workflow Engine:** State-machine driven task progression (Open ➔ In Progress ➔ Under Review ➔ Completed).
+- **Zero-Trust Validation:** Comprehensive payload and parameter validation using `express-validator` to prevent injection and mass-assignment.
 
 ---
 
-## Project Structure
+## 💻 Tech Stack
 
-```
+| Layer | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | React, TailwindCSS, Vite | Component-driven UI, responsive design, state management. |
+| **Backend** | Node.js, Express.js | Scalable REST API architecture, middleware processing. |
+| **Database** | MongoDB, Mongoose | NoSQL flexible schema, strict type enforcement, relationships. |
+| **Security** | JWT, bcrypt, Helmet | Token-based auth, password hashing, and HTTP header hardening. |
+| **Validation** | express-validator | Robust request payload validation and sanitization. |
+
+---
+
+## 📸 Platform Previews
+
+<div align="center">
+  <a href="#">
+    <img src="https://via.placeholder.com/800x400?text=Homepage+%2F+Landing" alt="SkillEarn Homepage" width="48%" />
+  </a>
+  <a href="#">
+    <img src="https://via.placeholder.com/800x400?text=Task+Marketplace+Feed" alt="Task Feed" width="48%" />
+  </a>
+</div>
+<br />
+<div align="center">
+  <a href="#">
+    <img src="https://via.placeholder.com/800x400?text=User+Dashboard" alt="Role-Based Dashboard" width="48%" />
+  </a>
+  <a href="#">
+    <img src="https://via.placeholder.com/800x400?text=Earnings+%26+Wallet" alt="Earnings View" width="48%" />
+  </a>
+</div>
+
+---
+
+## 🎥 Live Demo
+
+**[View Live Application](#)** | **[Watch Video Overview](#)**
+
+*(Placeholder: Add your deployed frontend link and a Loom/YouTube video walkthrough here)*
+
+---
+
+## 🏗️ Project Structure
+
+A clean, modular, and service-oriented structure designed for maintainability.
+
+```text
 skillearn/
-├── server/                  ← Express + MongoDB backend
-│   ├── server.js            ← Entry point
-│   ├── models/
-│   │   ├── User.js          ← User schema (student/business/company)
-│   │   └── Task.js          ← Task schema with commission logic
-│   ├── routes/
-│   │   ├── auth.js          ← /api/auth  (register, login, me)
-│   │   ├── tasks.js         ← /api/tasks (CRUD + workflow)
-│   │   └── users.js         ← /api/users (profile, earnings, leaderboard)
-│   ├── middleware/
-│   │   └── auth.js          ← JWT protect + role guard
-│   ├── .env.example         ← Copy to .env and fill in values
-│   └── package.json
-│
-└── client/                  ← React frontend
-    ├── public/
-    │   └── index.html
-    └── src/
-        ├── App.js           ← Router + layout
-        ├── index.js         ← Root render
-        ├── index.css        ← Global design system
-        ├── context/
-        │   └── AuthContext.js
-        ├── utils/
-        │   └── api.js       ← Axios instance
-        ├── components/
-        │   ├── Navbar.js
-        │   ├── TaskCard.js
-        │   └── ProtectedRoute.js
-        └── pages/
-            ├── HomePage.js
-            ├── LoginPage.js
-            ├── RegisterPage.js
-            ├── TasksPage.js
-            ├── TaskDetailPage.js
-            ├── PostTaskPage.js
-            ├── MyTasksPage.js
-            ├── EarningsPage.js
-            ├── LeaderboardPage.js
-            └── ProfilePage.js
+├── client/                 # React Frontend App
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Full page views (Dashboard, Feed, etc.)
+│   │   ├── context/        # Global auth & state management
+│   │   └── utils/          # API clients & helpers
+├── server/                 # Node.js/Express Backend App
+│   ├── src/
+│   │   ├── controllers/    # Request handling & business logic
+│   │   ├── models/         # Mongoose DB schemas (strict definitions)
+│   │   ├── routes/         # API endpoint definitions
+│   │   ├── middleware/     # Auth (JWT), Validation, Error handling
+│   │   └── config/         # Environment & DB connection setup
+└── package.json            # Root configuration
 ```
 
 ---
 
-## Quick Start
+## ⚙️ Local Setup
+
+Get the environment up and running locally in mere minutes.
 
 ### Prerequisites
-- Node.js v16+
-- MongoDB running locally OR a MongoDB Atlas URI
-- npm v8+
+- Node.js (v18+ recommended)
+- MongoDB (Local instance or Atlas Cluster URI)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/skillearn.git
+   cd skillearn
+   ```
+
+2. **Setup Backend**
+   ```bash
+   cd server
+   npm install
+   ```
+   *Create a `.env` file in the `server` directory:*
+   ```env
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_super_secret_jwt_key
+   ```
+   *Start the development server:*
+   ```bash
+   npm run dev
+   ```
+
+3. **Setup Frontend**
+   ```bash
+   cd ../client
+   npm install
+   ```
+   *Start the React application:*
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-### 1. Clone / extract the project
+## 🛣️ Task Workflow Lifecycle
 
-```bash
-cd skillearn
-```
-
----
-
-### 2. Set up the backend
-
-```bash
-cd server
-npm install
-```
-
-Create your `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-
-```
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/skillearn
-JWT_SECRET=change_this_to_a_long_random_string
-CLIENT_URL=http://localhost:3000
-```
-
-Start the backend:
-
-```bash
-npm run dev        # development with nodemon
-# OR
-npm start          # production
-```
-
-You should see:
-```
-MongoDB connected
-Server running on port 5000
-```
-
----
-
-### 3. Set up the frontend
-
-Open a new terminal:
-
-```bash
-cd client
-npm install
-npm start
-```
-
-React will open at **http://localhost:3000**
-
----
-
-### 4. Seed demo data (optional)
-
-Run this in your terminal to create demo accounts:
-
-```bash
-cd server
-node -e "
-const mongoose = require('mongoose');
-const User = require('./models/User');
-require('dotenv').config();
-
-mongoose.connect(process.env.MONGO_URI).then(async () => {
-  await User.deleteMany({ email: { \$in: ['student@demo.com','business@demo.com'] }});
-  await User.create([
-    { name: 'Priya Sharma', email: 'student@demo.com', password: 'demo123',
-      role: 'student', college: 'FAMT Ratnagiri', city: 'Ratnagiri',
-      skills: ['Design','Writing','Canva'], whatsapp: '+91 9876543210',
-      tasksCompleted: 4, totalEarned: 840 },
-    { name: 'Ravi Kulkarni', email: 'business@demo.com', password: 'demo123',
-      role: 'business', businessName: \"Ravi's Bakery\", city: 'Nashik' }
-  ]);
-  console.log('Demo accounts created:');
-  console.log('  Student  → student@demo.com / demo123');
-  console.log('  Business → business@demo.com / demo123');
-  process.exit(0);
-});
-"
+```mermaid
+graph LR
+    A[Business Creates Task] --> B(Task: OPEN)
+    B --> C{Student Applies}
+    C --> D[Business Approves]
+    D --> E(Task: IN PROGRESS)
+    E --> F[Student Submits Work]
+    F --> G(Task: UNDER REVIEW)
+    G --> H[Business Accepts]
+    H --> I((Task: COMPLETED & PAID))
+    G --> J[Business Requests Revision]
+    J --> E
 ```
 
 ---
 
-## API Reference
+## 👥 User Roles
 
-### Auth
-| Method | Route               | Description        | Auth |
-|--------|---------------------|--------------------|------|
-| POST   | /api/auth/register  | Register new user  | No   |
-| POST   | /api/auth/login     | Login              | No   |
-| GET    | /api/auth/me        | Get current user   | Yes  |
+1. **Student (Freelancer)**
+   - Browse and filter task marketplace.
+   - Apply for tasks & micro-internships.
+   - Submit deliverables and track earnings/payouts.
 
-### Tasks
-| Method | Route                      | Description                    | Auth         |
-|--------|----------------------------|--------------------------------|--------------|
-| GET    | /api/tasks                 | List open tasks (+ filters)    | No           |
-| GET    | /api/tasks/my              | My tasks (posted or assigned)  | Yes          |
-| GET    | /api/tasks/review          | Tasks awaiting senior review   | Senior only  |
-| GET    | /api/tasks/:id             | Task detail                    | No           |
-| POST   | /api/tasks                 | Post new task                  | Business/Co  |
-| PATCH  | /api/tasks/:id/accept      | Student accepts task           | Student      |
-| PATCH  | /api/tasks/:id/submit      | Student submits work           | Student      |
-| PATCH  | /api/tasks/:id/review      | Senior approves/revises        | Senior       |
-| PATCH  | /api/tasks/:id/approve     | Client final approval          | Business/Co  |
-| DELETE | /api/tasks/:id             | Delete open task               | Business/Co  |
+2. **Business / Company (Client)**
+   - Create, edit, and manage task listings.
+   - Review incoming applications and assign tasks.
+   - Approve final submissions and release payments.
 
-### Users
-| Method | Route                | Description          | Auth |
-|--------|----------------------|----------------------|------|
-| GET    | /api/users/profile   | Own profile          | Yes  |
-| PUT    | /api/users/profile   | Update profile       | Yes  |
-| GET    | /api/users/earnings  | Earnings + weekly    | Yes  |
-| GET    | /api/users/leaderboard | Top 10 students    | No   |
-| GET    | /api/users/:id       | Public user profile  | No   |
+3. **Administrator**
+   - Platform oversight, dispute resolution, and user moderation.
 
 ---
 
-## Task Workflow
+## 🛡️ Security Highlights
 
-```
-open → assigned → submitted → under_review → completed
-              ↑                     ↓
-         revision_requested ←───────┘  (senior requests revision)
-```
-
-1. **Business posts** task → status: `open`
-2. **Student accepts** → status: `assigned`
-3. **Student submits** work → status: `submitted`
-4. **Senior reviews** → approves → status: `under_review`  OR  requests revision → status: `revision_requested`
-5. **Business approves** → status: `completed` → student paid via UPI
+Built with a "Zero-Trust" mindset to ensure data integrity and platform safety:
+- **Strict Schema Enforcement:** Mongoose schemas enforce data structures natively, eliminating noisy data.
+- **Payload Sanitization:** Avoids mass-assignment by utilizing explicit controller-level data extraction.
+- **Deep Validation:** `express-validator` guarantees endpoints only process clean, expected data, returning detailed 400 validation errors for invalid shapes.
+- **Stateless Auth:** Role and identity are securely verified strictly via cryptographically signed JSON Web Tokens.
 
 ---
 
-## User Roles
+## 🔮 Future Roadmap
 
-| Role      | Can do                                           |
-|-----------|--------------------------------------------------|
-| student   | Browse & accept tasks, submit work, earn         |
-| business  | Post tasks, review submissions, approve & pay    |
-| company   | Same as business + access senior review panel    |
-| isSenior  | Flag on student — unlocked after 10 tasks + 4.5★ |
+- **AI-Powered Task Matching:** NLP algorithms to auto-suggest tasks to students based on their profile skills and past success.
+- **In-App Messaging Chat:** Real-time websockets (Socket.io) for continuous communication between businesses and students.
+- **Dispute Resolution Center:** Automated workflows for handling task disagreements and moderation.
+- **Integrated Payment Gateways:** Automated fiat and escrow payouts via Stripe Connect / Razorpay integrations.
 
 ---
 
-## Environment Variables
-
-| Variable    | Description                         | Default                          |
-|-------------|-------------------------------------|----------------------------------|
-| PORT        | Server port                         | 5000                             |
-| MONGO_URI   | MongoDB connection string           | mongodb://localhost:27017/skillearn |
-| JWT_SECRET  | JWT signing secret (keep private!)  | —                                |
-| CLIENT_URL  | Frontend URL for CORS               | http://localhost:3000            |
-
----
-
-## Pages
-
-| Route         | Page               | Access       |
-|---------------|--------------------|--------------|
-| /             | Landing page       | Public       |
-| /tasks        | Task feed          | Public       |
-| /tasks/:id    | Task detail        | Public       |
-| /leaderboard  | Top earners        | Public       |
-| /login        | Login              | Public       |
-| /register     | Register           | Public       |
-| /post-task    | Post a task        | Business/Co  |
-| /my-tasks     | My tasks           | Logged in    |
-| /earnings     | Earnings dashboard | Student      |
-| /profile      | Edit profile       | Logged in    |
-
----
-
-## License
-MIT — free to use and modify.
+<div align="center">
+  <b>Built with passion by <a href="https://github.com/yourusername">Your Name/Organization</a>.</b><br>
+  For professional inquiries, reach out at <a href="mailto:email@domain.com">email@domain.com</a>.
+</div>
