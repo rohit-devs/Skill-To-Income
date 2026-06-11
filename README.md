@@ -201,6 +201,7 @@ Built with a "Zero-Trust" mindset to ensure data integrity and platform safety:
 ---
 
 <div align="center">
-  <b>Built with passion by <a href="https://github.com/yourusername">Your Name/Organization</a>.</b><br>
-  For professional inquiries, reach out at <a href="mailto:email@domain.com">email@domain.com</a>.
+  <b>Built with passion by <a href="https://github.com/yourusername"></a>.</b><br>
+  For professional inquiries, reach out at <a href="mailto:email@domain.com">rohitdmohotkar005@gmail.com
+</a>.
 </div>
