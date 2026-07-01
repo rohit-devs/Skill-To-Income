@@ -71,6 +71,7 @@ The modern entry-level job market is deeply fragmented. Students struggle to gai
 ---
 
 ## 🎥 Live Demo
+https://drive.google.com/file/d/1_If_LLVJ811yLvJID2fdblJgtw0uIWuI/view?usp=sharing
 
 **[View Live Application](#)** | **[Watch Video Overview](#)**
 
