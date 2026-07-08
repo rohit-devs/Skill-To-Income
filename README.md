@@ -52,9 +52,15 @@ The modern entry-level job market is deeply fragmented. Students struggle to gai
 
 <div align="center">
   <a href="#">
-    <img src="![Uploading image.png…]() " alt="SkillEarn Homepage" width="48%" />
+    <img width="1763" height="2545" alt="image" src="https://github.com/user-attachments/assets/11291e2f-fc57-437f-a91f-e638556427ef" />
+   Premium Feature page
+    <img width="1763" height="1403" alt="image" src="https://github.com/user-attachments/assets/e0866912-b3e1-4ccc-b872-047462c245e1" />
+Sign up page
+    <img width="1763" height="982" alt="image" src="https://github.com/user-attachments/assets/96e22e61-4bb5-4062-ae86-7fc42220dcb1" />
+Login up page
   </a>
   <a href="#">
+    SkillEarn Homepage
     <img src="https://via.placeholder.com/800x400?text=Task+Marketplace+Feed" alt="Task Feed" width="48%" />
   </a>
 </div>
