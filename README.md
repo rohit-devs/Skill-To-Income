@@ -52,7 +52,7 @@ The modern entry-level job market is deeply fragmented. Students struggle to gai
 
 <div align="center">
   <a href="#">
-    <img src="https://via.placeholder.com/800x400?text=Homepage+%2F+Landing" alt="SkillEarn Homepage" width="48%" />
+    <img src="![Uploading image.png…]() " alt="SkillEarn Homepage" width="48%" />
   </a>
   <a href="#">
     <img src="https://via.placeholder.com/800x400?text=Task+Marketplace+Feed" alt="Task Feed" width="48%" />
