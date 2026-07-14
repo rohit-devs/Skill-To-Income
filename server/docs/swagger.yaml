@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: SkillEarn V2 API
+  version: 1.0.0
+  description: API documentation for the SkillEarn backend
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - auth
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                role:
+                  type: string
+                  enum: [student, business, company, admin]
+                college:
+                  type: string
+                city:
+                  type: string
+                skills:
+                  type: array
+                  items:
+                    type: string
+              required: [name, email, password]
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Validation error
+  /api/auth/login:
+    post:
+      tags:
+        - auth
+      summary: Log in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required: [email, password]
+      responses:
+        '200':
+          description: Successful login
+        '401':
+          description: Invalid credentials
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []

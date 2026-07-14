@@ -1,0 +1,57 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install server dependencies
+        working-directory: ./server
+        run: npm ci
+      - name: Install client dependencies
+        working-directory: ./client
+        run: npm ci
+      - name: Verify server environment
+        working-directory: ./server
+        run: npm run check-env
+      - name: Run backend tests
+        working-directory: ./server
+        run: npm test
+      - name: Run frontend tests
+        working-directory: ./client
+        run: npm test
+      - name: Run lint
+        run: |
+          npm --prefix ./server run lint
+          npm --prefix ./client run lint
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build client
+        working-directory: ./client
+        run: npm ci && npm run build
+      - name: Build server
+        working-directory: ./server
+        run: npm ci
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-build
+          path: ./server
