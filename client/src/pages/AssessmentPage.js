@@ -1,3 +1,13 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/AssessmentPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 

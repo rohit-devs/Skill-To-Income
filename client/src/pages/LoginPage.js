@@ -1,6 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/LoginPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Waves } from '../components/ui';
 
 const DEMO_USERS = [
   ['student@demo.com',  '🎓 Student'],
@@ -46,9 +57,22 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[80px] pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[80px] pointer-events-none" />
+      {/* Background Waves */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <Waves
+          lineColor="#6366F1"
+          backgroundColor="transparent"
+          waveSpeedX={0.015}
+          waveSpeedY={0.007}
+          waveAmpX={35}
+          waveAmpY={15}
+          friction={0.9}
+          tension={0.01}
+          maxCursorMove={100}
+          xGap={14}
+          yGap={34}
+        />
+      </div>
 
       <div className="w-full max-w-[420px] relative z-10">
         {/* Header */}

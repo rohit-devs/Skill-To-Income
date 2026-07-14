@@ -1,7 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/senior/SeniorHome.jsx
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DashboardLayout from '../../components/DashboardLayout';
-import StatCard from '../../components/StatCard';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import StatCard from '../../components/features/StatCard';
 import { Badge, Button, EmptyState, Skeleton } from '../../components/ui';
 import api from '../../utils/api';
 

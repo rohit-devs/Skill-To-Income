@@ -1,3 +1,13 @@
+// ----------------------------------------------------------------------
+// File: server/controllers/authController.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: mongoose models, middleware helpers.
+// Used By: Express backend application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');

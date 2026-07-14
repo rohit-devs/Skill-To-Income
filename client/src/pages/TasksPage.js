@@ -1,7 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/TasksPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import TaskCard from '../components/TaskCard';
+import TaskCard from '../components/features/TaskCard';
 import api from '../utils/api';
 
 const CATS = ['All','Design','Writing','Data','Social Media','Video','Coding','Research','Marketing'];

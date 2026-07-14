@@ -5,16 +5,18 @@
   "dependencies": {
     "axios": "^1.8.4",
     "ogl": "^1.0.11",
+    "postprocessing": "^6.39.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.15.3",
-    "socket.io-client": "^4.8.1"
+    "socket.io-client": "^4.8.1",
+    "three": "^0.185.1"
   },
   "scripts": {
-    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./src/generated-tailwind.css --watch",
-    "build:tailwind": "tailwindcss -i ./src/tailwind.css -o ./src/generated-tailwind.css",
+    "tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/generated-tailwind.css --watch",
+    "build:tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/generated-tailwind.css",
     "start": "npm run build:tailwind && craco start",
     "build": "npm run build:tailwind && craco build",
     "test": "craco test",
@@ -35,7 +37,16 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "autoprefixer": "^10.4.27",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.11",
     "tailwindcss": "^3.4.17"
+  },
+  "overrides": {
+    "@tootallnate/once": "^2.0.1",
+    "nth-check": "^2.1.1",
+    "resolve-url-loader": "^5.0.0",
+    "serialize-javascript": "^7.0.5",
+    "underscore": "^1.13.8",
+    "uuid": "^11.1.1",
+    "webpack-dev-server": "^5.2.6"
   }
 }

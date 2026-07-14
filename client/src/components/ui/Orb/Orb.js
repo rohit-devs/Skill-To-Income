@@ -1,6 +1,35 @@
+// ----------------------------------------------------------------------
+// File: client/src/components/ui/Orb/Orb.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, styling utilities.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import { Mesh, Program, Renderer, Triangle, Vec3 } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Orb.css';
+
+const isWebGLAvailable = () => {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') || canvas.getContext('webgl2');
+    if (!gl) return false;
+
+    // Check if shader precision is fully supported (some virtualized/software environments return null here)
+    const vertexShaderPrecision = gl.getShaderPrecisionFormat(gl.VERTEX_SHADER, gl.HIGH_FLOAT);
+    const fragmentShaderPrecision = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+    if (!vertexShaderPrecision || !fragmentShaderPrecision) {
+      return false;
+    }
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
 
 export default function Orb({
   hue = 0,
@@ -183,33 +212,53 @@ export default function Orb({
     }
   `;
 
+  const [webglSupported, setWebglSupported] = useState(true);
+
   useEffect(() => {
+    if (!isWebGLAvailable()) {
+      setWebglSupported(false);
+      return;
+    }
     const container = ctnDom.current;
     if (!container) return;
 
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
-    container.appendChild(gl.canvas);
+    let renderer;
+    let gl;
+    let geometry;
+    let program;
+    let mesh;
+    let rafId;
 
-    const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: vert,
-      fragment: frag,
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: {
-          value: new Vec3(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
-        },
-        hue: { value: hue },
-        hover: { value: 0 },
-        rot: { value: 0 },
-        hoverIntensity: { value: hoverIntensity },
-        backgroundColor: { value: hexToVec3(backgroundColor) }
-      }
-    });
+    try {
+      renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+      gl = renderer.gl;
+      if (!gl) throw new Error('GL context is null');
+      gl.clearColor(0, 0, 0, 0);
+      container.appendChild(gl.canvas);
 
-    const mesh = new Mesh(gl, { geometry, program });
+      geometry = new Triangle(gl);
+      program = new Program(gl, {
+        vertex: vert,
+        fragment: frag,
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: {
+            value: new Vec3(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+          },
+          hue: { value: hue },
+          hover: { value: 0 },
+          rot: { value: 0 },
+          hoverIntensity: { value: hoverIntensity },
+          backgroundColor: { value: hexToVec3(backgroundColor) }
+        }
+      });
+
+      mesh = new Mesh(gl, { geometry, program });
+    } catch (err) {
+      console.warn('Failed to initialize Orb WebGL/OGL:', err);
+      setWebglSupported(false);
+      return;
+    }
 
     function resize() {
       if (!container) return;
@@ -255,7 +304,6 @@ export default function Orb({
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
 
-    let rafId;
     const update = t => {
       rafId = requestAnimationFrame(update);
       const dt = (t - lastTime) * 0.001;
@@ -278,15 +326,25 @@ export default function Orb({
     rafId = requestAnimationFrame(update);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
-      container.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      try {
+        if (gl && gl.canvas && gl.canvas.parentNode) {
+          gl.canvas.parentNode.removeChild(gl.canvas);
+        }
+        gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      } catch (e) {
+        void 0;
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-line
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState, backgroundColor]);
+
+  if (!webglSupported || !isWebGLAvailable()) {
+    return <div ref={ctnDom} className="orb-container" style={{ background: '#000000' }} />;
+  }
 
   return <div ref={ctnDom} className="orb-container" />;
 }

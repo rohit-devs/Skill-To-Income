@@ -1,0 +1,39 @@
+/*
+File: client/src/components/ui/Waves/Waves.css
+Purpose: First-party stylesheet for the Skill-To-Income application.
+Author: Principal Software Architect
+Dependencies: Tailwind CSS and application design tokens.
+Used By: React client application
+Features: Responsive styling, visual states, and reusable presentation rules.
+Responsibilities: Keep visual behavior consistent without embedding business logic.
+*/
+
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.waves::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #160000;
+  border-radius: 50%;
+  transform: translate3d(calc(var(-0.5rem) - 50%), calc(var(50%) - 50%), 0);
+  will-change: transform;
+}
+
+.waves-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

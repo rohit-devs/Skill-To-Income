@@ -1,3 +1,13 @@
+// ----------------------------------------------------------------------
+// File: client/src/context/AuthContext.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react context, api/socket dependencies.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import api, { getApiErrorMessage } from '../utils/api';
 

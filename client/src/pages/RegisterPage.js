@@ -1,6 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/RegisterPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Waves } from '../components/ui';
 
 const SKILLS = ['Design','Writing','Data','Social Media','Video','Coding','Research','Excel','Canva','Marketing'];
 
@@ -93,9 +104,22 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-6 py-16 relative overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-secondary/4 blur-[100px] pointer-events-none" />
+      {/* Background Waves */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <Waves
+          lineColor="#6366F1"
+          backgroundColor="transparent"
+          waveSpeedX={0.015}
+          waveSpeedY={0.007}
+          waveAmpX={35}
+          waveAmpY={15}
+          friction={0.9}
+          tension={0.01}
+          maxCursorMove={100}
+          xGap={14}
+          yGap={34}
+        />
+      </div>
 
       <div className="w-full max-w-[480px] relative z-10">
         {/* Header */}

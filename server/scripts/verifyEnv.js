@@ -1,3 +1,13 @@
+// ----------------------------------------------------------------------
+// File: server/scripts/verifyEnv.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: project runtime dependencies.
+// Used By: Express backend application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 
 require('dotenv').config();
 

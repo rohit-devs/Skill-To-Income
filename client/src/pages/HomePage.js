@@ -1,6 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+// ----------------------------------------------------------------------
+// File: client/src/pages/HomePage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Orb } from '../components/ui';
+import { Orb, LiquidEther, Hyperspeed } from '../components/ui';
+import PremiumDesignSection from '../components/features/PremiumDesignSection';
 
 
 /* ── Count-up hook ───────────────────────────────────────────── */
@@ -51,7 +62,6 @@ const TASK_CARDS = [
   { title: 'Data Analysis',        pay: '₹550', cat: 'Data',      floatClass: 'float-d', entryClass: 'card-entry-4', featured: false, offsetY: 10 },
 ];
 
-/* ── Main Component ─────────────────────────────────────────── */
 export default function HomePage() {
   const navigate = useNavigate();
   const earningsCount = useCountUp(1250, 2000, true); // starts immediately on mount
@@ -67,28 +77,52 @@ export default function HomePage() {
     e.currentTarget.style.boxShadow = e.currentTarget.dataset.baseShadow || 'none';
   };
 
+  const hyperspeedOptions = useMemo(() => ({
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
+    distortion: 'turbulentDistortion',
+    length: 400,
+    roadWidth: 10,
+    islandWidth: 2,
+    lanesPerRoad: 3,
+    fov: 90,
+    fovSpeedUp: 150,
+    speedUp: 2,
+    carLightsFade: 0.4,
+    totalSideLightSticks: 20,
+    lightPairsPerRoadWay: 40,
+    shoulderLinesWidthPercentage: 0.05,
+    brokenLinesWidthPercentage: 0.1,
+    brokenLinesLengthPercentage: 0.5,
+    lightStickWidth: [0.12, 0.5],
+    lightStickHeight: [1.3, 1.7],
+    movingAwaySpeed: [60, 80],
+    movingCloserSpeed: [-120, -160],
+    carLightsLength: [400 * 0.03, 400 * 0.2],
+    carLightsRadius: [0.05, 0.14],
+    carWidthPercentage: [0.3, 0.5],
+    carShiftX: [-0.8, 0.8],
+    carFloorSeparation: [0, 5],
+    colors: {
+      roadColor: 0x080808,
+      islandColor: 0x0a0a0a,
+      background: 0x000000,
+      shoulderLines: 0x131320,
+      brokenLines: 0x131320,
+      leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
+      rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
+      sticks: 0x03B3C3,
+    },
+  }), []);
+
   return (
     <div style={{ background: '#0B0F1A', minHeight: '100vh', color: '#fff', overflowX: 'hidden' }}>
 
       {/* ────────────────────────────────────────────────────────
-          ANIMATED BACKGROUND ORBS (slow drift, GPU-composited)
+          HYPERSPEED — full-screen background animation
       ──────────────────────────────────────────────────────── */}
-      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
-        {/* Indigo — top-right */}
-        <div
-          className="animate-drift"
-          style={{ position: 'absolute', top: '-15%', right: '-8%', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.20) 0%, transparent 68%)', willChange: 'transform' }}
-        />
-        {/* Purple — centre-left */}
-        <div
-          className="animate-drift"
-          style={{ position: 'absolute', top: '25%', left: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 68%)', animationDelay: '-7s', willChange: 'transform' }}
-        />
-        {/* Amber — bottom-left */}
-        <div
-          className="animate-drift"
-          style={{ position: 'absolute', bottom: '-12%', left: '-5%', width: 550, height: 550, borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 68%)', animationDelay: '-13s', willChange: 'transform' }}
-        />
+      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.4 }}>
+        <Hyperspeed effectOptions={hyperspeedOptions} />
       </div>
 
       {/* ────────────────────────────────────────────────────────
@@ -161,79 +195,45 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* ── RIGHT: Staggered + floating task cards ── */}
-          <div style={{ position: 'relative' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-              {TASK_CARDS.map((t, i) => (
-                <div
-                  key={t.title}
-                  /* entry animation class + continuous float class */
-                  className={`${t.entryClass} ${t.floatClass}`}
-                  data-hover-shadow={t.featured ? '0 24px 56px rgba(99,102,241,0.55)' : '0 16px 40px rgba(0,0,0,0.45)'}
-                  data-base-shadow={t.featured ? '0 8px 32px rgba(99,102,241,0.35)' : '0 4px 16px rgba(0,0,0,0.3)'}
-                  data-base-transform={t.offsetY ? `translateY(${t.offsetY}px)` : 'none'}
-                  style={{
-                    background: t.featured ? 'linear-gradient(135deg, #4F46E5, #7C3AED)' : 'rgba(17,24,39,0.9)',
-                    border: t.featured ? '1px solid rgba(139,92,246,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: 16,
-                    padding: '20px 20px 18px',
-                    cursor: 'pointer',
-                    transition: 'transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease',
-                    boxShadow: t.featured ? '0 8px 32px rgba(99,102,241,0.35)' : '0 4px 16px rgba(0,0,0,0.3)',
-                    backdropFilter: 'blur(12px)',
-                    marginTop: t.offsetY,
-                  }}
-                  onMouseOver={lift}
-                  onMouseOut={drop}
-                >
-                  <div style={{ fontSize: 24, fontWeight: 900, color: t.featured ? '#fff' : '#F59E0B', marginBottom: 6, letterSpacing: '-0.02em' }}>{t.pay}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: t.featured ? '#fff' : '#F9FAFB', marginBottom: 6, lineHeight: 1.3 }}>{t.title}</div>
-                  <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.09em', color: t.featured ? 'rgba(255,255,255,0.65)' : '#9CA3AF' }}>{t.cat}</div>
-                  {t.featured && (
-                    <div style={{ marginTop: 12, display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 10px', borderRadius: 999, background: 'rgba(255,255,255,0.15)', fontSize: 9.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.85)' }}>
-                      <span className="material-symbols-outlined icon-fill" style={{ fontSize: 12 }}>auto_awesome</span>
-                      AI-matched
-                    </div>
-                  )}
-                </div>
-              ))}
+          {/* ── RIGHT: Interactive Orb Visual ── */}
+          <div className="card-entry-1" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+            {/* Orb WebGL canvas */}
+            <div style={{ width: '100%', maxWidth: 520, height: 480, position: 'relative', borderRadius: 32, overflow: 'hidden' }}>
+              <Orb
+                hue={260}
+                hoverIntensity={0.6}
+                rotateOnHover={true}
+                forceHoverState={false}
+                backgroundColor="#0B0F1A"
+              />
             </div>
 
-            {/* ── EARNINGS CARD — count-up + pulse glow ── */}
-            <div
-              className="animate-pulse-glow card-entry-5"
-              style={{
-                position: 'absolute',
-                bottom: -28,
-                left: -36,
-                background: 'linear-gradient(135deg, #F59E0B, #F97316)',
-                borderRadius: 20,
-                padding: '16px 22px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 16,
-                minWidth: 210,
-                zIndex: 10,
-              }}
-            >
-              <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <span className="material-symbols-outlined icon-fill" style={{ color: '#fff', fontSize: 22 }}>currency_rupee</span>
-              </div>
-              <div>
-                <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.75)', marginBottom: 3 }}>Instant Payout</div>
-                <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>
-                  ₹{earningsCount.toLocaleString('en-IN')}
+            {/* Floating stats overlay */}
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+              {/* Payout card */}
+              <div
+                className="animate-pulse-glow card-entry-5"
+                style={{ background: 'linear-gradient(135deg, #F59E0B, #F97316)', borderRadius: 18, padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 14, minWidth: 190, backdropFilter: 'blur(12px)' }}
+              >
+                <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span className="material-symbols-outlined icon-fill" style={{ color: '#fff', fontSize: 20 }}>currency_rupee</span>
+                </div>
+                <div>
+                  <div style={{ fontSize: 9.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.75)', marginBottom: 2 }}>Instant Payout</div>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>₹{earningsCount.toLocaleString('en-IN')}</div>
                 </div>
               </div>
-            </div>
-
-            {/* AI-matched badge */}
-            <div
-              className="card-entry-5"
-              style={{ position: 'absolute', top: -18, right: -16, background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: 999, padding: '6px 14px', display: 'flex', alignItems: 'center', gap: 6, backdropFilter: 'blur(8px)', zIndex: 10 }}
-            >
-              <span className="material-symbols-outlined icon-fill" style={{ fontSize: 14, color: '#10B981' }}>verified</span>
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#10B981' }}>Verified · Escrow Safe</span>
+              {/* Verified badge */}
+              <div
+                className="card-entry-5"
+                style={{ background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: 18, padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 10, backdropFilter: 'blur(8px)' }}
+              >
+                <span className="material-symbols-outlined icon-fill" style={{ fontSize: 22, color: '#10B981' }}>verified</span>
+                <div>
+                  <div style={{ fontSize: 9.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#10B981', marginBottom: 2 }}>Escrow Safe</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Pay only after approval</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -337,6 +337,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── PREMIUM DESIGN SECTION (with Hyperspeed background) ── */}
+      <PremiumDesignSection />
 
       {/* ── FOOTER ── */}
       <footer style={{ position: 'relative', zIndex: 1, background: 'rgba(17,24,39,0.6)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '80px 24px 40px' }}>

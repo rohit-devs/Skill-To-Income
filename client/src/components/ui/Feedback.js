@@ -1,3 +1,13 @@
+// ----------------------------------------------------------------------
+// File: client/src/components/ui/Feedback.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, styling utilities.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React from 'react';
 
 /**

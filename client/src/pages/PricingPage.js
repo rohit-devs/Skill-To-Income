@@ -1,5 +1,16 @@
-import React from 'react';
+// ----------------------------------------------------------------------
+// File: client/src/pages/PricingPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Hyperspeed } from '../components/ui';
 
 const PLANS = [
   {
@@ -45,8 +56,50 @@ const PLANS = [
 export default function PricingPage() {
   const navigate = useNavigate();
 
+  const hyperspeedOptions = useMemo(() => ({
+    onSpeedUp: () => {},
+    onSlowDown: () => {},
+    distortion: 'turbulentDistortion',
+    length: 400,
+    roadWidth: 10,
+    islandWidth: 2,
+    lanesPerRoad: 3,
+    fov: 90,
+    fovSpeedUp: 150,
+    speedUp: 2,
+    carLightsFade: 0.4,
+    totalSideLightSticks: 20,
+    lightPairsPerRoadWay: 40,
+    shoulderLinesWidthPercentage: 0.05,
+    brokenLinesWidthPercentage: 0.1,
+    brokenLinesLengthPercentage: 0.5,
+    lightStickWidth: [0.12, 0.5],
+    lightStickHeight: [1.3, 1.7],
+    movingAwaySpeed: [60, 80],
+    movingCloserSpeed: [-120, -160],
+    carLightsLength: [400 * 0.03, 400 * 0.2],
+    carLightsRadius: [0.05, 0.14],
+    carWidthPercentage: [0.3, 0.5],
+    carShiftX: [-0.8, 0.8],
+    carFloorSeparation: [0, 5],
+    colors: {
+      roadColor: 0x080808,
+      islandColor: 0x0a0a0a,
+      background: 0x000000,
+      shoulderLines: 0x131320,
+      brokenLines: 0x131320,
+      leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
+      rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
+      sticks: 0x03B3C3,
+    },
+  }), []);
+
   return (
     <div className="bg-bg min-h-screen pt-12 pb-24 px-6 relative overflow-hidden">
+      {/* Hyperspeed WebGL background */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.45, pointerEvents: 'none' }}>
+        <Hyperspeed effectOptions={hyperspeedOptions} />
+      </div>
       {/* Background Blurs */}
       <div className="absolute top-[-10%] left-[20%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />

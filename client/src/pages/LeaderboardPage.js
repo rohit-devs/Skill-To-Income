@@ -1,6 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/LeaderboardPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
+import { Ballpit } from '../components/ui';
 
 const COLORS = ['var(--primary-container)','#7c3aed','#0ea5e9','#10b981','#f59e0b','#ef4444','#ec4899','#8b5cf6'];
 
@@ -19,15 +30,28 @@ export default function LeaderboardPage() {
   return (
     <div style={{ background: 'var(--background)', minHeight: 'calc(100vh - 64px)' }}>
       {/* Header */}
-      <div style={{ background: 'var(--surface-container-lowest)', padding: '48px 32px 36px', borderBottom: '1px solid rgba(70,69,85,.3)' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ position: 'relative', background: 'var(--surface-container-lowest)', overflow: 'hidden', borderBottom: '1px solid rgba(70,69,85,.3)' }}>
+        {/* Ballpit Background */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.8 }}>
+          <Ballpit
+            count={100}
+            gravity={0.2}
+            friction={0.99}
+            wallBounce={0.95}
+            followCursor={true}
+            colors={[0x6366F1, 0x8B5CF6, 0x06B6D4, 0x10B981, 0xF59E0B]}
+            minSize={0.4}
+            maxSize={0.8}
+          />
+        </div>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 700, margin: '0 auto', textAlign: 'center', padding: '56px 32px 48px', pointerEvents: 'none' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🏆</div>
-          <h1 style={{ fontSize: 36, fontWeight: 800, letterSpacing: '-.03em', marginBottom: 10 }}>Top Earners</h1>
-          <p style={{ color: 'var(--on-surface-variant)', fontSize: 15 }}>Students leading Skill-To-Income this month · #1 earns ₹500 bonus</p>
+          <h1 style={{ fontSize: 36, fontWeight: 800, letterSpacing: '-.03em', marginBottom: 10, textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>Top Earners</h1>
+          <p style={{ color: 'var(--on-surface-variant)', fontSize: 15, textShadow: '0 1px 4px rgba(0,0,0,0.8)', fontWeight: 500 }}>Students leading Skill-To-Income this month · #1 earns ₹500 bonus</p>
         </div>
       </div>
 
-      <div style={{ maxWidth: 700, margin: '0 auto', padding: '32px 24px' }}>
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '32px 24px', position: 'relative', zIndex: 1 }}>
         {leaders.length === 0 ? (
           <div className="empty-state">
             <span className="material-symbols-outlined" style={{ fontSize: 56, display: 'block', marginBottom: 12 }}>emoji_events</span>

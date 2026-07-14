@@ -1,0 +1,17 @@
+/*
+File: client/src/components/ui/LiquidEther/LiquidEther.css
+Purpose: First-party stylesheet for the Skill-To-Income application.
+Author: Principal Software Architect
+Dependencies: Tailwind CSS and application design tokens.
+Used By: React client application
+Features: Responsive styling, visual states, and reusable presentation rules.
+Responsibilities: Keep visual behavior consistent without embedding business logic.
+*/
+
+.liquid-ether-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}

@@ -1,12 +1,22 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/business/BusinessHome.jsx
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import DashboardLayout from '../../components/DashboardLayout';
-import StatCard from '../../components/StatCard';
+import DashboardLayout from '../../components/layout/DashboardLayout';
+import StatCard from '../../components/features/StatCard';
 import { Button, Skeleton } from '../../components/ui';
 import api from '../../utils/api';
 
-const EarningsChart = lazy(() => import('../../components/EarningsChart'));
+const EarningsChart = lazy(() => import('../../components/features/EarningsChart'));
 
 const fmt = (v) => `₹${Number(v || 0).toLocaleString('en-IN')}`;
 

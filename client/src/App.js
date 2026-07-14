@@ -1,9 +1,19 @@
+// ----------------------------------------------------------------------
+// File: client/src/App.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: project runtime dependencies.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
-import Navbar from './components/Navbar';
-import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/layout/Navbar';
+import ProtectedRoute from './components/layout/ProtectedRoute';
 
 import HomePage          from './pages/HomePage';
 import LoginPage         from './pages/LoginPage';
@@ -31,7 +41,7 @@ import BusinessHome from './pages/business/BusinessHome';
 import AdminHome from './pages/admin/AdminHome';
 import SeniorHome from './pages/senior/SeniorHome';
 
-import './index.css';
+import './styles/index.css';
 
 function NavbarWrapper() {
   const location = useLocation();

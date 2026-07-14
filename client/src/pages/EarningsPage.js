@@ -1,7 +1,17 @@
+// ----------------------------------------------------------------------
+// File: client/src/pages/EarningsPage.js
+// Purpose: First-party module for the Skill-To-Income application.
+// Author: Principal Software Architect
+// Dependencies: react, react-router-dom, api utilities, shared components.
+// Used By: React client application.
+// Features: Production-ready marketplace, dashboard, auth, and workflow behavior.
+// Responsibilities: Keep this module focused, maintainable, and aligned with app architecture.
+// ----------------------------------------------------------------------
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/layout/Sidebar';
 import api from '../utils/api';
 
 const MILESTONES = [
